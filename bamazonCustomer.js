@@ -76,10 +76,9 @@ function userPurchase() {
                 }
             });
         });
-
 };
-//connection.end();
 
+//connection.end();
   
 
 
