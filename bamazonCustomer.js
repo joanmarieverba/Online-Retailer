@@ -50,16 +50,25 @@ function userPurchase() {
             }
         ])
         .then(function (answer) {
-                console.log("reached answer ");
+            console.log("ID, quantity wanted ", answer.productID, answer.quantity);
+//            connection.query("SELECT * FROM products", function (err, result) {
+            let query = "SELECT item_id, price, stock_quantity FROM products WHERE ?";
+            connection.query(query, { item_id: answer.productID }, function (err, result) {
+                if (err) throw err;
+                console.log(result[0].item_id, result[0].price, result[0].stock_quantity);
+                if (answer.quantity > result[0].stock_quantity) {
+                    console.log("Insufficient stock in inventory.")
+                } else {
+                    let newTotal = result[0].stock_quantity - answer.quantity;
+                    let costOfPurchase = (result[0].price * answer.quantity).toFixed(2);
+                    console.log("The total of your purchase is $", costOfPurchase);
+                }
+            });
         });
-    connection.end();
+
 };
+//connection.end();
 
-
-            // var query = "SELECT position, song, year FROM top5000 WHERE ?";
-            // connection.query(query, { artist: answer.artist }, function (err, res) {
-            //     for (var i = 0; i < res.length; i++) {
-            //         console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Year: " + res[i].year);
-            //     }
+  
 
 
