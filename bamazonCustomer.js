@@ -19,10 +19,19 @@ connection.connect(function (err) {
 });
 
 function display() {
-    connection.query("SELECT * FROM mytable", function (err, result) {
+    connection.query("SELECT * FROM products", function (err, result) {
         if (err) throw err;
-        console.log(result);
-        connection.end();
+        for (var i = 0; i < result.length; i++) {
+            console.log(
+                "ID: " +
+                result[i].item_id +
+                " || Product Name: " +
+                result[i].product_name +
+                " || Price: " +
+                result[i].price
+            );
+        }
+        userPurchase();
     });
 };
 
@@ -43,6 +52,7 @@ function userPurchase() {
         .then(function (answer) {
                 console.log("reached answer ");
         });
+    connection.end();
 };
 
 
