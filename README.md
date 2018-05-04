@@ -5,3 +5,5 @@ MySQL exercise: This application simulates an online retailer.
 3. If there is insufficient stock, that message is printed on the screen.
 4. If there is sufficient stock, the total of the order is printed.
 5. If the user makes a purchase, the quantity of the item in inventory is updated.  
+![alt text](sample-screenshot.png "Sample input")  
+
